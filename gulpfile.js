@@ -14,6 +14,11 @@ gulp.task('code', function() {
     .pipe(browserSync.reload({ stream: true }))
 });
 
+gulp.task('scripts', function() {
+    return gulp.src('app/js/*.js')
+    .pipe(browserSync.reload({ stream: true }))
+});
+
 gulp.task('browser-sync', function() { // Ñîçäàåì òàñê browser-sync
     browserSync({ // Âûïîëíÿåì browserSync
         server: { // Îïðåäåëÿåì ïàðàìåòðû ñåðâåðà
@@ -26,5 +31,6 @@ gulp.task('browser-sync', function() { // Ñîçäàåì òàñê browser-sync
 gulp.task('watch', function() {
     gulp.watch('app/sass/**/*.sass', gulp.parallel('sass')); // Íàáëþäåíèå çà sass ôàéëàìè
     gulp.watch('app/*.html', gulp.parallel('code')); // Наблюдение за HTML файлами в корне проекта
+    gulp.watch('app/js/*js', gulp.parallel('scripts'));
 });
 gulp.task('default', gulp.parallel('sass', 'browser-sync', 'watch'));
